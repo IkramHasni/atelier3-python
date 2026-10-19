@@ -1,0 +1,24 @@
+{% extends "catalogue/base.html" %}
+{% block title %}Détail du livre{% endblock %}
+{% block content %}
+<h2>{{ livre.title }}</h2>
+<p><strong>Auteur :</strong> {{ livre.author }}</p>
+   <a href="{% url 'catalogue:auteur_detail' livre.author.pk %}">
+        {{ livre.author }}
+    </a>
+<p><strong>Résumé :</strong>
+{{ livre.summary|default:"Aucun résumé disponible." }}
+</p>
+<p><strong>Date de publication :</strong>
+{{ livre.publication_date|date:"d/m/Y" }}
+</p>
+<p><strong>Prix :</strong> {{ livre.price }} TND</p>
+{% if livre.category %}
+<p><strong>Catégorie :</strong> {{ livre.category }}</p>
+{% endif %}
+<p>
+<a href="{% url 'catalogue:livre_list' %}">
+Retour à la liste des livres
+</a>
+</p>
+{% endblock %}

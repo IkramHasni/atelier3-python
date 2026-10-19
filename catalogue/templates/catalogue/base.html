@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Ma bibliothèque{% endblock %}</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+max-width: 1000px;
+margin: 30px auto;
+padding: 0 20px;
+line-height: 1.6;
+}
+nav {
+background: #eeeeee;
+padding: 12px;
+margin-bottom: 25px;
+}
+nav a {
+margin-right: 20px;
+text-decoration: none;
+}
+table {
+width: 100%;
+border-collapse: collapse;
+}
+th, td {
+border: 1px solid #cccccc;
+padding: 10px;
+text-align: left;
+}
+th {
+background: #eeeeee;
+}
+</style>
+</head>
+<body>
+<header>
+<h1>Ma bibliothèque</h1>
+<nav>
+<a href="{% url 'catalogue:livre_list' %}">Livres</a>
+<a href="{% url 'catalogue:auteur_list' %}">Auteurs</a>
+<a href="{% url 'catalogue:categorie_list' %}">Catégories</a>
+</nav>
+</header>
+<main>
+{% block content %}
+{% endblock %}
+</main>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{% extends "catalogue/base.html" %}
+{% block title %}Catégories{% endblock %}
+{% block content %}
+<h2>Catégories littéraires</h2>
+{% if categories %}
+<ul>
+{% for categorie in categories %}
+<li>
+<h3>{{ categorie.name }}</h3>
+<p>
+{{ categorie.description|default:"Aucune description." }}
+</p>
+<h4>Livres associés</h4>
+<ul>
+{% for livre in categorie.books.all %}
+<li>
+<a href="{% url 'catalogue:livre_detail' livre.pk %}">
+{{ livre.title }}
+</a>
+</li>
+{% empty %}
+<li>Aucun livre dans cette catégorie.</li>
+{% endfor %}
+</ul>
+</li>
+{% endfor %}
+</ul>
+{% else %}
+<p>Aucune catégorie enregistrée.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "catalogue/base.html" %}
+{% block title %}Liste des livres{% endblock %}
+{% block content %}
+<h2>Catalogue des livres</h2>
+{% if livres %}
+<table>
+<thead>
+<tr>
+<th>Titre</th>
+<th>Auteur</th>
+<th>Prix (TND)</th>
+<th>Détails</th>
+</tr>
+</thead>
+<tbody>
+{% for livre in livres %}
+<tr>
+<td>{{ livre.title }}</td>
+<td>{{ livre.author }}</td>
+<td>{{ livre.price }}</td>
+<td>
+<a href="{% url 'catalogue:livre_detail' livre.pk %}">
+Consulter
+</a>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% else %}
+<p>Aucun livre n'est enregistré.</p>
+{% endif %}
+{% endblock %}

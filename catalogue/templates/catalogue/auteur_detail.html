@@ -1,0 +1,26 @@
+{% extends "catalogue/base.html" %}
+{% block title %}Detail de l'auteur{% endblock %}
+{% block content %}
+<h2>{{ auteur.first_name }} {{ auteur.last_name }}</h2>
+<p><strong>Email :</strong> {{ auteur.email }}</p>
+<p><strong>Nombre de livres :</strong> {{ nb_livres }}</p>
+<h3>Livres de cet auteur</h3>
+{% if livres %}
+<ul>
+{% for livre in livres %}
+<li>
+<a href="{% url 'catalogue:livre_detail' livre.pk %}">
+{{ livre.title }}
+</a>
+</li>
+{% endfor %}
+</ul>
+{% else %}
+<p>Cet auteur n'a pas encore de livre enregistré.</p>
+{% endif %}
+<p>
+<a href="{% url 'catalogue:auteur_list' %}">
+Retour a la liste des auteurs
+</a>
+</p>
+{% endblock %}
